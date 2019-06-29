@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  >
+
+  <link
+    rel='stylesheet'
+    href='https://cdnjs.cloudflare.com/ajax/libs/minireset.css/0.0.2/minireset.min.css'
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
+    rel="stylesheet"
+  >
+  <link
+    href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href="./css/style.css"
+  >
+  <title>vuetify1</title>
+</head>
+
+<body>
+  <div id="account">
+    <v-app>
+      <v-toolbar
+        fixed
+        app
+        light
+        class="py-2"
+      >
+        <v-layout
+          row
+          align-center
+        >
+          <v-flex
+            xs1
+            justify-center
+            class="text-xs-center"
+          >
+            <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+          </v-flex>
+          <v-flex xs8>
+            <img
+              src="./img/MIS_Logo2-3.png"
+              alt="logo"
+            >
+          </v-flex>
+          <v-flex xs3>
+            <v-layout
+              row
+              align-center
+            >
+              <v-flex xs8>
+                <v-text-field
+                  label="搜尋"
+                  required
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs1>
+                <v-btn
+                  dark
+                  flat
+                  small
+                  color="primary"
+                >
+                  <v-icon dark>search</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+      </v-toolbar>
+
+
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        temporary
+        absolute
+        color="primary"
+      >
+        <v-list class="pa-1">
+          <v-list-tile avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                <h3>南臺科技大學 資訊管理學系</h3>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+
+        <v-list
+          class="pt-0"
+          dense
+        >
+          <v-divider></v-divider>
+
+          <v-list-tile
+            v-for="(item, i) in links"
+            :key="i"
+            @click=""
+            :href="item.href"
+          >
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+
+
+      <v-content>
+        <v-container
+          fluid
+          id="main"
+        >
+          <!-- 輪播 -->
+          <section>
+            <v-carousel
+              height="300"
+              hide-controls
+            >
+              <v-carousel-item
+                v-for="(item,i) in banners"
+                :key="i"
+                :src="item.src"
+              ></v-carousel-item>
+            </v-carousel>
+          </section>
+
+          <!-- 麵包屑 -->
+          <section class="contentpath">
+            <v-breadcrumbs
+              :items="contentpath"
+              divider=">"
+            ></v-breadcrumbs>
+          </section>
+
+          <!-- table title -->
+          <section>
+            <v-layout
+              row
+              align-center
+            >
+              <v-flex xs1>
+                <img
+                  src="https://mis.stust.edu.tw/Sysid/mis/images/web/contentTitle.png"
+                  alt="logo"
+                >
+              </v-flex xs1>
+              <v-flex>
+                <h1 class="headline">所有消息</h1>
+              </v-flex>
+            </v-layout>
+          </section>
+
+          <!-- table -->
+          <section>
+            <v-data-table
+              :headers="headers"
+              :items="desserts"
+              class="mt-2"
+              hide-actions
+            >
+              <template v-slot:items="props">
+                <td class="table__title">
+                  <v-btn
+                    flat
+                    small
+                    href="https://mis.stust.edu.tw/tc/news/105-16892"
+                  >{{ props.item.name }}</v-btn>
+                </td>
+                <td>{{ props.item.class }}</td>
+                <td>{{ props.item.dot }}</td>
+                <td class="red--text accent-2">{{ props.item.date }}</td>
+              </template>
+            </v-data-table>
+          </section>
+        </v-container>
+      </v-content>
+
+      <!-- footer -->
+      <v-footer
+        class="py-4"
+        height="auto"
+      >
+        <v-layout
+          row
+          wrap
+          align-center
+          justify-center
+        >
+          <v-flex
+            xs10
+            class="text-xs-center"
+          >
+            <div>©2014 南臺科技大學資訊管理系 Departmentt of Information Management</div>
+            <div>
+              地　址：台南市永康區南台街1號 L棟 3F
+            </div>
+            <div>
+              電　話：06-2533131#4301 Fax: 06-2541621
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-footer>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="./src/main.js"></script>
+</body>
+
+</html>

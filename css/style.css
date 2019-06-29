@@ -1,0 +1,16 @@
+.v-toolbar__content img {
+  max-height: 100%;
+}
+
+#main {
+  width: 1000px;
+}
+
+.table__title .v-btn__content {
+  width: 500px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*# sourceMappingURL=style.css.map */
